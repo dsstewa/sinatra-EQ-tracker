@@ -4,7 +4,6 @@ class Projects < ActiveRecord::Migration
       t.string :name
       t.string :location
       t.integer :duration
-
     end
   end
 end
