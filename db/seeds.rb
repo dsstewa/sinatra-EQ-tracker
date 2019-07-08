@@ -4,6 +4,15 @@ User.create(
    password: "password"
 
 )
+User.create(
+    username: "Bill",
+    email: "bill@gmail.com",
+    password: "password"
+ 
+ )
+
+
+
 
 Project.create(
   name: "Sylvan Lake State Park",
