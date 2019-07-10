@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20190707224756) do
     t.string  "name"
     t.string  "location"
     t.integer "duration"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
