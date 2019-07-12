@@ -5,11 +5,23 @@ get '/equipment/new' do
 
 end
 
+
+
 post '/equipment' do
 @new_equipment = Equipment.create(params)
 #Need to build this out
-    binding.pry
+ 
+redirect "/equipment/#{@new_equipment.id}"
+    
 end
+
+get '/equipment/:id' do 
+    
+    @equipment= Equipment.find_by_id(params[:id])
+    
+    erb :'/equipment/model'
+      
+    end
 
 
 

@@ -1,3 +1,41 @@
-<h1>Hey you made it!</h1>
 
-<li><a href="/equipment/new">Add a New Piece of Equipment</a></li>
+
+
+
+<div class="container">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Welcome to the Project Equipment Tracker</h2>
+
+    <div class="content">
+      <br><br>
+      <ul><p>The current pieces of equipment are listed below. Please Click a piece of equipment to assigne it the project or create a new one</p>
+      <% @equipment.each do |data| %>
+        <li><a href="/equipment/<%= data.id %>"><%= data.make %>--<%=data.model %></a></li>   
+        <% end %>
+      </ul>
+      <li><a href="/equipment/new">Add a New Piece of Equipment</a></li>
+    
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

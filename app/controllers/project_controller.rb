@@ -10,7 +10,7 @@ class ProjectController < ApplicationController
   
   get '/projects/:id' do 
     @project= Project.find_by_id(params[:id])
-    
+    @equipment = Equipment.all
     erb :'projects/project'
     end
 
