@@ -11,7 +11,13 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     @projects = Project.all
-    erb :home_page
+
+    if logged_in?
+      erb :home_page
+    else
+      erb :login
+    end
+    
   end
 
 
