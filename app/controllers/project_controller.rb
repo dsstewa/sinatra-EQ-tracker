@@ -29,9 +29,13 @@ class ProjectController < ApplicationController
   end
 
   get '/projects/:id' do 
+   if logged_in? 
     @project= Project.find_by_id(params[:id])
     erb :'projects/project'
-    end
+   else
+    redirect '/'
+   end 
+  end
 
 
   post '/projects' do 
