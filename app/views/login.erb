@@ -1,4 +1,4 @@
-YOu are on the login Page make a login
+
 
 
 <h1>Log In Page</h1>
@@ -6,7 +6,7 @@ YOu are on the login Page make a login
 <br>
 
 <p>Please log in with your username and password. Or Register a new Account</p>
-
+<p><font color="red"><%=@error%></font> </p>
 <form action="/login" method="post">
 
     Username: <input type="text" name="username" placeholder="Username">

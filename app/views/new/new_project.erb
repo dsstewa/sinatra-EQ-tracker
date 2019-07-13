@@ -1,6 +1,8 @@
 <h2>Please fill in the information below to create a new Project!</h2>
 
 <form action="/projects" method="post">   
+        <p><font color="red"><%=@error%></font> </p>
+        
         Project Name: <input type="text" name="name">
         <br>
         <br>

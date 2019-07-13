@@ -30,29 +30,36 @@ class ProjectController < ApplicationController
 
   get '/projects/:id' do 
     @project= Project.find_by_id(params[:id])
-    
-
-
     erb :'projects/project'
     end
 
 
   post '/projects' do 
-   @new_project = Project.new(params)
-   @new_project.user = current_user 
-   @new_project.save
    
-   redirect "/projects/#{@new_project.id}"
+    if params[:name].empty? || params[:location].empty? || params[:duration].empty?
+       @error = "Project Name, Location and Duration must be filled out"
+       erb :'/new/new_project' 
+    else
+     @new_project = Project.new(params)
+     @new_project.user = current_user 
+     @new_project.save
+     redirect "/projects/#{@new_project.id}"
+    end
+   
   end
 
 delete '/projects/:id/delete' do 
   
-  if session[:user_id] == current_user.id
   @project = Project.find_by_id(params[:id])
-  @project.delete
-  redirect to '/'
+  if session[:user_id] == @project.user.id
+    
+    @project.delete
+    redirect to '/'
   else
-    redirect to "/projects/error"
+    @error = "You are not the creater of this project and therfore can not delete"
+    @error2 = "Please contact the user:#{User.find_by_id(@project.user_id).username} at the email:#{User.find_by_id(@project.user_id).email}"
+    
+    erb :"projects/error_delete"
   end
   
 end
