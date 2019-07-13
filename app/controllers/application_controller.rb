@@ -11,7 +11,8 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     @projects = Project.all
-
+    @users  = User.all
+    
     if logged_in?
       erb :home_page
     else
@@ -19,6 +20,8 @@ class ApplicationController < Sinatra::Base
     end
     
   end
+
+
 
 
 

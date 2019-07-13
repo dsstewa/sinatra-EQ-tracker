@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190707224756) do
-
-  create_table "equipment", force: :cascade do |t|
-    t.string  "make"
-    t.string  "model"
-    t.string  "rent_type"
-    t.float   "rate"
-    t.integer "project_id"
-  end
+ActiveRecord::Schema.define(version: 20190707223259) do
 
   create_table "projects", force: :cascade do |t|
     t.string  "name"

@@ -8,5 +8,4 @@ end
 use Rack::MethodOverride
 use UsersController
 use ProjectController
-use EquipmentController
 run ApplicationController

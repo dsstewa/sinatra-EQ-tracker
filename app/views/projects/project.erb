@@ -7,7 +7,7 @@
     <h2>Welcome to the Project Equipment Tracker</h2>
     <br>
     <h3>Please click below to edit the project details</h3>
-    <form action='/projects/<%= @project.id %>' method='post'>
+    <form action='/projects/<%= @project.id %>/edit' method='post'>
     <input type='hidden' name='_method' value='patch'>
 
     Project Name: <input type='text' name='name' value='<%= @project.name %>'>
@@ -22,19 +22,16 @@
     <br>
    
     <input type='submit' value='Update'>
-
 </form>
-    <div class="content">
-      <br><br>
-      <ul><p>The current pieces of equipment are listed below. Please Click a piece of equipment to assigne it the project or create a new one</p>
-      <% @equipment.each do |data| %>
-        <li><a href="/equipment/<%= data.id %>"><%= data.make %>--<%=data.model %></a></li>   
-        <% end %>
-      </ul>
-      <li><a href="/equipment/new">Add a New Piece of Equipment</a></li>
-    
-      </div>
-  </div>
-</div>
+
+<form action="/projects/<%= @project.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete">
+</form>
+
+
+
+<a href="/">Home</a></li>
+<a href="/users/signout">Sign Out</a></li>
 
 

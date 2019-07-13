@@ -12,11 +12,14 @@ class UsersController < ApplicationController
 
    post '/users/signup' do 
     @current_user = User.new(params)
+    if User.find_by(:username => params[:username])
+      redirect to '/error'
+    else
     @current_user.save
     session[:user_id] = @current_user.id
     
     redirect '/'
-
+    end 
    end
 
   get '/users/signout' do
@@ -25,10 +28,14 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-  binding.pry
-  #stopped here, need to get this to work
-
+    @user = User.find_by(:username => params[:username]) 
+     
+    if @user
+      redirect to "/users/new"
+    elsif @user.authenticate(params[:password])    
+      session[:user_id] = @user.id
+      redirect "/"
+    
+     end
   end
-
-
 end

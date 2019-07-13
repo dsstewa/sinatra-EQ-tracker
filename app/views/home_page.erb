@@ -7,9 +7,11 @@
       <br><br>
       <ul><p>The current Projects are listed below. Please Click a project to see the currently assigned construction equipment</p>
       <% @projects.each do |data| %>
-        <li><a href="/projects/<%= data.id %>"><%= data.name %>--<%=data.location %></a></li>   
+        <li><a href="/projects/<%= data.id %>"><%= data.name %>--<%=data.location %>-- Created by User: <%= @users.find_by_id(data.user_id).username%></a></li>   
         <% end %>
       </ul>
+      
+      
       <li><a href="/projects/new">Create New Project</a></li>
       <li><a href="/users/signout">Sign Out</a></li>
       </div>
