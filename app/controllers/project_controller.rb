@@ -1,34 +1,34 @@
 class ProjectController < ApplicationController
 
-  get '/projects/error' do
+  get '/projects/error' do    #error splash page 
     erb :'/projects/error'
   end
 
 
-  get '/projects/new' do
- 
-    erb :'/new/new_project' 
-  
+  get '/projects/new' do    #creates a new project, checks to verify the user is logged in first
+     if logged_in? 
+       erb :'/new/new_project' 
+     else 
+      erb :login
+     end
   end
   
-  patch '/projects/:id/edit' do 
+  patch '/projects/:id/edit' do       #dynamic page for editing projects based on the project ID
     @project = Project.find_by_id(params[:id])
     
     if session[:user_id] == @project.user_id
-    
     @project.name = params[:name]
     @project.location = params[:location]
     @project.duration = params[:duration]
     @project.save
     else
       redirect to "/projects/error"
-
     end 
     redirect to "/"
 
-  end
+  end 
 
-  get '/projects/:id' do 
+  get '/projects/:id' do     #page for viewing the project information, agian checks to verify user is logged in  
    if logged_in? 
     @project= Project.find_by_id(params[:id])
     erb :'projects/project'
@@ -38,7 +38,7 @@ class ProjectController < ApplicationController
   end
 
 
-  post '/projects' do 
+  post '/projects' do    #post request for creating a new project, all fields must be filled in or it kicks the user an error
    
     if params[:name].empty? || params[:location].empty? || params[:duration].empty?
        @error = "Project Name, Location and Duration must be filled out"
@@ -52,7 +52,7 @@ class ProjectController < ApplicationController
    
   end
 
-delete '/projects/:id/delete' do 
+delete '/projects/:id/delete' do   #delete page for deleting a project, verifies user is the owner before deliting, if not kicks an error d 
   
   @project = Project.find_by_id(params[:id])
   if session[:user_id] == @project.user.id
