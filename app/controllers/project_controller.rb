@@ -37,6 +37,18 @@ class ProjectController < ApplicationController
    end 
   end
 
+  get '/projects/:id/edit' do     #page for viewing the project information, agian checks to verify user is logged in  
+    if logged_in? 
+     @project= Project.find_by_id(params[:id])
+     erb :'projects/edit_project'
+    else
+     redirect '/'
+    end 
+   end
+
+
+
+
 
   post '/projects' do    #post request for creating a new project, all fields must be filled in or it kicks the user an error
    

@@ -1,0 +1,41 @@
+
+
+
+
+<div class="container">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Welcome to the Project Equipment Tracker</h2>
+    
+    <p><font color="red"><%=@error%></font> </p>
+   
+    <p><font color="red"><%=@error1%></font> </p>
+    <br>
+    <h3>Please click below to edit the project details</h3>
+    <form action='/projects/<%= @project.id %>/edit' method='post'>
+    <input type='hidden' name='_method' value='patch'>
+
+    Project Name: <input type='text' name='name' value='<%= @project.name %>'>
+    <br>
+    <br>
+    Project Location: <input type='text' name='location' value='<%= @project.location %>'> 
+    <br>
+    <br>
+    Duration (Days): <input type='text' name='duration' value='<%= @project.duration %>'>
+    <br>
+    <br>
+    <br>
+   
+    <input type='submit' value='Update'>
+</form>
+
+<form action="/projects/<%= @project.id %>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete">
+</form>
+
+
+
+<a href="/">Home</a></li>
+<a href="/users/signout">Sign Out</a></li>
+
+
